@@ -1,0 +1,66 @@
+<section class="regervation_part section_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5">
+        <div class="section_tittle">
+          <h2>Add Menu</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="regervation_part_iner">
+          <form #AddMenuForm="ngForm" (ngSubmit)="addMenu()">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input
+                  type="text"
+                  [(ngModel)]="menu.name"
+                  class="form-control"
+                  id="inputEmail4"
+                  placeholder="Menu Name"
+                  name="a"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <input
+                  type="text"
+                  [(ngModel)]="menu.description"
+                  class="form-control"
+                  id="inputPassword4"
+                  placeholder="Description"
+                  name="b"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <input
+                  [(ngModel)]="menu.price"
+                  type="number"
+                  class="form-control"
+                  id="inputPassword4"
+                  placeholder="Price"
+                  name="c"
+                />
+              </div>
+
+              <div class="form-group col-md-6">
+                <input
+                  [(ngModel)]="menu.ingredient"
+                  type="text"
+                  class="form-control"
+                  id="inputPassword4"
+                  placeholder="Ingredient"
+                  name="d"
+                />
+              </div>
+            </div>
+
+            <div class="regerv_btn">
+              <input type="submit" value="add menu" id="submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<section class="regervation_part section_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5">
+        <div class="section_tittle">
+          <h2>Login</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="regervation_part_iner">
+          <form [formGroup]="loginForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  id="inputEmail4"
+                  placeholder="Enter your email"
+                />
+                <div
+                  *ngIf="
+                    loginForm.controls['email'].invalid &&
+                    (loginForm.controls['email'].touched ||
+                      loginForm.controls['email'].dirty)
+                  "
+                ></div>
+
+                <div
+                  style="color: white"
+                  *ngIf="loginForm.controls['email'].errors?.['required']"
+                >
+                  Email is required
+                </div>
+
+                <div
+                  style="color: white"
+                  *ngIf="loginForm.controls['email'].errors?.['email']"
+                >
+                  Please enter a valid email
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <input
+                  type="password"
+                  formControlName="password"
+                  class="form-control"
+                  id="inputPassword4"
+                  placeholder="Enter your password"
+                />
+                <div
+                  *ngIf="
+                    loginForm.controls['password'].invalid &&
+                    (loginForm.controls['password'].touched ||
+                      loginForm.controls['password'].dirty)
+                  "
+                ></div>
+
+                <div
+                  style="color: white"
+                  *ngIf="loginForm.controls['password'].errors?.['required']"
+                >
+                  Password is required
+                </div>
+              </div>
+            </div>
+
+            <div class="regerv_btn">
+              <input
+                type="submit"
+                value="login"
+                id="submit"
+                (click)="login()"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

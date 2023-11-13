@@ -1,0 +1,26 @@
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let p of plats">
+    <th>{{ p.id }}</th>
+    <th>{{ p.name }}</th>
+    <th>{{ p.description }}</th>
+    <th>{{ p.price }}</th>
+    <th>
+      <button class="btn btn-info" (click)="display(p.id)">Display</button>
+      <button
+        style="margin-left: 5px; margin-right: 5px"
+        class="btn btn-warning"
+        (click)="edit(p.id)"
+      >
+        Edit
+      </button>
+      <button class="btn btn-danger">Delete</button>
+    </th>
+  </tr>
+</table>
