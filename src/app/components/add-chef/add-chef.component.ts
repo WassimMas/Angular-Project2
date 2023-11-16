@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ChefService } from 'src/app/services/chef.service';
 
 @Component({
   selector: 'app-add-chef',
@@ -9,10 +10,11 @@ import { FormGroup } from '@angular/forms';
 export class AddChefComponent implements OnInit {
   AddChefForm!: FormGroup;
   chef: any = {};
-  constructor() {}
+  constructor(private chefService: ChefService) {}
 
   ngOnInit(): void {}
   addChef() {
     console.log('this is chef', this.chef);
+    this.chefService.addChef(this.chef).subscribe();
   }
 }
