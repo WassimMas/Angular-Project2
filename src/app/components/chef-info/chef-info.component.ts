@@ -18,13 +18,16 @@ export class ChefInfoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.chefs = chefsData;
+    // this.chefs = chefsData;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     // for (let i = 0; i < this.chefs.length; i++) {
     //   if (this.chefs[i].id == this.id) {
     //     this.c = this.chefs[i];
     //   }
     // }
-    this.chefService.getChefById(this.id).subscribe();
+    this.chefService.getChefById(this.id).subscribe((res) => {
+      console.log('Here response from BE', res.findedChef);
+      this.c = res.findedChef;
+    });
   }
 }

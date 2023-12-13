@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { platsData } from 'src/app/data/data';
 import { PlatService } from 'src/app/services/plat.service';
 
@@ -14,9 +14,11 @@ export class EditPlatComponent implements OnInit {
   menu: any = {};
   id: any;
   plats: any = [];
+  error: any;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private platService: PlatService
+    private platService: PlatService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,10 +30,20 @@ export class EditPlatComponent implements OnInit {
     //   }
     // }
 
-    this.platService.getPlatById(this.id).subscribe();
+    this.platService.getPlatById(this.id).subscribe((res) => {
+      console.log('here response from BE', res.findedPlat);
+      this.menu = res.findedPlat;
+    });
   }
   editPlat() {
     console.log('here new plat', this.menu);
-    this.platService.editPlat(this.menu).subscribe();
+    this.platService.editPlat(this.menu).subscribe((res) => {
+      console.log('Here response from BE', res.isUpdated);
+      if (res.isUpdated) {
+        this.router.navigate(['dashboard']);
+      } else {
+        this.error = 'error in editing';
+      }
+    });
   }
 }

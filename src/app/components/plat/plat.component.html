@@ -1,8 +1,14 @@
-<div class="single_food_item media" style="margin-top: 20px">
+<div class="single_food_item media d-flex flex-row" style="margin-top: 20px">
   <img src="assets/img/food_menu/single_food_1.png" class="mr-3" alt="..." />
   <div class="media-body align-self-center">
-    <h3>{{ platInput.name }}</h3>
+    <h3>Name :</h3>
+    <p>{{ platInput.name }}</p>
+    <p></p>
+    <h3>Description :</h3>
     <p>{{ platInput.description }}</p>
-    <h5>{{ platInput.price }}</h5>
+    <h3>Ingredient :</h3>
+    <p>{{ platInput.ingredient }}</p>
+    <h3>Price :</h3>
+    <p>{{ platInput.price }}</p>
   </div>
 </div>

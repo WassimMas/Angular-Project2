@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { platsData } from 'src/app/data/data';
+
 import { PlatService } from 'src/app/services/plat.service';
 
 @Component({
@@ -27,6 +27,9 @@ export class PlatInfoComponent implements OnInit {
     //   }
     // }
 
-    this.platService.getPlatById(this.id).subscribe();
+    this.platService.getPlatById(this.id).subscribe((res) => {
+      console.log('here response from BE', res.findedPlat);
+      this.p = res.findedPlat;
+    });
   }
 }

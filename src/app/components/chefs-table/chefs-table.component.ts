@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { chefsData } from 'src/app/data/data';
+import { ChefService } from 'src/app/services/chef.service';
 
 @Component({
   selector: 'app-chefs-table',
@@ -9,10 +9,10 @@ import { chefsData } from 'src/app/data/data';
 })
 export class ChefsTableComponent implements OnInit {
   chefs: any = [];
-  constructor(private router: Router) {}
+  constructor(private router: Router, private chefService: ChefService) {}
 
   ngOnInit(): void {
-    this.chefs = chefsData;
+    this.getAllChefs();
   }
 
   display(id: number) {
@@ -20,6 +20,21 @@ export class ChefsTableComponent implements OnInit {
   }
 
   edit(id: any) {
-    this.router.navigate([`editPlat/${id}`]);
+    this.router.navigate([`editChef/${id}`]);
+  }
+  delete(id: any) {
+    this.chefService.deleteChef(id).subscribe((res) => {
+      console.log('Here response from BE', res.msg);
+      if (res.msg) {
+        this.getAllChefs();
+      }
+    });
+  }
+
+  getAllChefs() {
+    this.chefService.getAllChefs().subscribe((res) => {
+      console.log('Here response from BE', res.findedChefs);
+      this.chefs = res.findedChefs;
+    });
   }
 }

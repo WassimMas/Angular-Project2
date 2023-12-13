@@ -13,7 +13,7 @@ export class UserService {
   }
 
   signup(user: any) {
-    return this.httpClient.post(this.userUrl + 'subscription', user);
+    return this.httpClient.post(this.userUrl + '/subscription', user);
   }
 
   editProfile(user: any) {

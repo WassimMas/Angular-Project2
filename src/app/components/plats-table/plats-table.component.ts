@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { platsData } from 'src/app/data/data';
+
 import { PlatService } from 'src/app/services/plat.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class PlatsTableComponent implements OnInit {
   constructor(private router: Router, private platService: PlatService) {}
 
   ngOnInit(): void {
-    this.plats = platsData;
+    this.getAllPlats();
   }
 
   display(id: number) {
@@ -25,6 +25,17 @@ export class PlatsTableComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.platService.deleteplat(id).subscribe();
+    this.platService.deleteplat(id).subscribe((res) => {
+      console.log('Here response from BE', res.msg);
+      if (res.msg) {
+        this.getAllPlats();
+      }
+    });
+  }
+  getAllPlats() {
+    this.platService.getAllPlats().subscribe((response) => {
+      console.log('Here response from BE', response.plats);
+      this.plats = response.plats;
+    });
   }
 }
